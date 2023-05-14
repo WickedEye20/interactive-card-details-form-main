@@ -1,0 +1,317 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+    2. Remove default margin
+  */
+* {
+  margin: 0;
+}
+
+/*
+    3. Allow percentage-based heights in the application
+  */
+html,
+body {
+  height: 100%;
+}
+
+/*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+    7. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/*
+    8. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+    9. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-image: url(../images/bg-main-desktop.png);
+  background-repeat: no-repeat;
+  background-color: hsl(0deg, 0%, 100%);
+}
+@media (max-width: 767px) {
+  body {
+    background-image: url(../images/bg-main-mobile.png);
+    background-size: contain;
+  }
+}
+
+.grid_content {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.main_content_grid {
+  max-width: 1200px;
+  min-height: 100vh;
+  padding: 2rem;
+  margin-inline: auto;
+  display: grid;
+  grid-template-rows: 350px;
+}
+@media (min-width: 768px) {
+  .main_content_grid {
+    gap: 7rem;
+    grid-template-rows: auto;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+}
+
+.card_previews {
+  gap: 2rem;
+}
+@media (max-width: 767px) {
+  .card_previews {
+    position: relative;
+  }
+}
+
+.card_front,
+.card_back {
+  position: relative;
+  color: hsl(0deg, 0%, 100%);
+  width: min-content;
+}
+@media (max-width: 767px) {
+  .card_front,
+  .card_back {
+    position: absolute;
+    width: 90%;
+  }
+}
+.card_front .card_back_img,
+.card_front .card_front_img,
+.card_back .card_back_img,
+.card_back .card_front_img {
+  max-width: revert;
+  border-radius: 0.5rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+@media (max-width: 767px) {
+  .card_front .card_back_img,
+  .card_front .card_front_img,
+  .card_back .card_back_img,
+  .card_back .card_front_img {
+    max-width: 100%;
+  }
+}
+.card_front > *:not(.card_front_img, .card_back_img),
+.card_back > *:not(.card_front_img, .card_back_img) {
+  position: absolute;
+}
+
+@media (max-width: 767px) {
+  .card_front {
+    z-index: 2;
+    top: 30%;
+  }
+}
+
+.card_front_logo {
+  top: 2rem;
+  left: 2rem;
+}
+@media (max-width: 767px) {
+  .card_front_logo {
+    width: 20%;
+    top: 1.25rem;
+    left: 1.25rem;
+  }
+}
+
+.card_front_number {
+  left: 2rem;
+  top: 50%;
+  font-size: 2.17rem;
+}
+@media (max-width: 767px) {
+  .card_front_number {
+    left: 1.25rem;
+    font-size: 1.17rem;
+    letter-spacing: 1.5px;
+  }
+}
+
+.card_front_name {
+  text-transform: capitalize;
+  bottom: 2rem;
+  left: 2rem;
+}
+@media (max-width: 767px) {
+  .card_front_name {
+    bottom: 1.25rem;
+    left: 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+.card_front_exp {
+  right: 2rem;
+  bottom: 2rem;
+}
+@media (max-width: 767px) {
+  .card_front_exp {
+    right: 1.25rem;
+    bottom: 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+.card_back {
+  margin-left: auto;
+}
+@media (max-width: 767px) {
+  .card_back {
+    right: 0;
+  }
+}
+
+.card_back_cvv {
+  right: 3.75rem;
+  bottom: 46%;
+}
+@media (max-width: 767px) {
+  .card_back_cvv {
+    right: 2.125rem;
+    font-size: 0.875rem;
+    bottom: 44%;
+  }
+}
+
+.form_control {
+  display: grid;
+  gap: 0.375rem;
+}
+.form_control:nth-child(3) {
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.form_control .form_labels {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.form_control input {
+  padding: 0.575rem 1.15rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: 1px solid hsl(270deg, 3%, 87%);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: 0.4s ease;
+}
+.form_control input::placeholder {
+  color: hsl(270deg, 3%, 87%);
+  font-weight: 400;
+}
+.form_control input:focus {
+  background: linear-gradient(white, white) padding-box, linear-gradient(to right, hsl(249deg, 99%, 64%), hsl(278deg, 94%, 30%)) border-box;
+  border: 1px solid transparent;
+}
+
+.form_control_inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0.375rem;
+}
+@media (max-width: 767px) {
+  .form_control_inner {
+    grid-template-columns: none;
+  }
+}
+.form_control_inner:first-child {
+  column-gap: 0.75rem;
+}
+.form_control_inner > .form_labels {
+  grid-area: 1/span 2;
+}
+.form_control_inner > input {
+  max-width: 100px;
+}
+.form_control_inner > input#cvc {
+  max-width: revert;
+}
+@media (max-width: 767px) {
+  .form_control_inner > input#cvc {
+    width: 100%;
+  }
+}
+
+.confirm_btn {
+  padding: 0.575rem 1.15rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: 1px solid hsl(270deg, 3%, 87%);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: 0.4s ease;
+  background-color: hsl(278deg, 68%, 11%);
+  color: hsl(0deg, 0%, 100%);
+  cursor: pointer;
+}
+.confirm_btn:hover {
+  background-color: hsl(0deg, 0%, 100%);
+  color: hsl(278deg, 68%, 11%);
+  border-color: hsl(278deg, 68%, 11%);
+}
+@media (max-width: 767px) {
+  .confirm_btn {
+    min-height: 60px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

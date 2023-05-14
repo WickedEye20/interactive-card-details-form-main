@@ -1,0 +1,305 @@
+$color-gradient-primary: hsl(249, 99%, 64%);
+$color-gradient-secondary: hsl(278, 94%, 30%);
+$color-error: hsl(0, 100%, 66%);
+
+$color-neutral-200: hsl(0, 0%, 100%);
+$color-neutral-300: hsl(270, 3%, 87%);
+$color-neutral-500: hsl(279, 6%, 55%);
+$color-neutral-600: hsl(278, 68%, 11%);
+
+$font-family: "Space Grotesk", sans-serif;
+
+$font-weight: 500;
+
+$card-content-gap: 2rem;
+
+$card-content-gap-mobile: 0.75rem;
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+* {
+  margin: 0;
+}
+/*
+    3. Allow percentage-based heights in the application
+  */
+html,
+body {
+  height: 100%;
+}
+/*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+    7. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+    8. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+    9. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+@mixin input_style {
+  padding: 0.575rem 1.15rem;
+  font-size: 1.1rem;
+  font-weight: $font-weight;
+  border: 1px solid $color-neutral-300;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: 0.4s ease;
+}
+
+@mixin for-phone-only {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-desktop {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+body {
+  font-family: $font-family;
+  background-image: url(../images/bg-main-desktop.png);
+  background-repeat: no-repeat;
+  background-color: $color-neutral-200;
+  @include for-phone-only() {
+    background-image: url(../images/bg-main-mobile.png);
+    background-size: contain;
+  }
+}
+
+.grid_content {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.main_content_grid {
+  max-width: 1200px;
+  min-height: 100vh;
+  padding: 2rem;
+  margin-inline: auto;
+  display: grid;
+  grid-template-rows: 350px;
+  @include for-tablet-desktop() {
+    gap: 7rem;
+    grid-template-rows: auto;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+}
+
+.card_previews {
+  gap: 2rem;
+  @include for-phone-only() {
+    position: relative;
+  }
+}
+
+.card_front,
+.card_back {
+  position: relative;
+  color: $color-neutral-200;
+  width: min-content;
+  @include for-phone-only() {
+    position: absolute;
+    width: 90%;
+  }
+  .card_back_img,
+  .card_front_img {
+    max-width: revert;
+    @include for-phone-only() {
+      max-width: 100%;
+    }
+    border-radius: 0.5rem;
+    box-shadow: 0 15px 30px rgb(0 0 0 / 15%);
+  }
+  > *:not(.card_front_img, .card_back_img) {
+    position: absolute;
+  }
+}
+.card_front {
+  @include for-phone-only() {
+    z-index: 2;
+    top: 30%;
+  }
+}
+
+.card_front_logo {
+  top: $card-content-gap;
+  left: $card-content-gap;
+  @include for-phone-only() {
+    width: 20%;
+    top: calc($card-content-gap - $card-content-gap-mobile);
+    left: calc($card-content-gap - $card-content-gap-mobile);
+  }
+}
+
+.card_front_number {
+  left: $card-content-gap;
+  top: 50%;
+  font-size: 2.17rem;
+  @include for-phone-only() {
+    left: calc($card-content-gap - $card-content-gap-mobile);
+    font-size: 1.17rem;
+    letter-spacing: 1.5px;
+  }
+}
+
+.card_front_name {
+  text-transform: capitalize;
+  bottom: $card-content-gap;
+  left: $card-content-gap;
+  @include for-phone-only() {
+    bottom: calc($card-content-gap - $card-content-gap-mobile);
+    left: calc($card-content-gap - $card-content-gap-mobile);
+    font-size: 0.875rem;
+  }
+}
+
+.card_front_exp {
+  right: $card-content-gap;
+  bottom: $card-content-gap;
+  @include for-phone-only() {
+    right: calc($card-content-gap - $card-content-gap-mobile);
+    bottom: calc($card-content-gap - $card-content-gap-mobile);
+    font-size: 0.875rem;
+  }
+}
+
+.card_back {
+  margin-left: auto;
+  @include for-phone-only() {
+    right: 0;
+  }
+}
+
+.card_back_cvv {
+  right: 3.75rem;
+  bottom: 46%;
+  @include for-phone-only() {
+    right: 2.125rem;
+    font-size: 0.875rem;
+    bottom: 44%;
+  }
+}
+
+.form_control {
+  display: grid;
+  gap: 0.375rem;
+  &:nth-child(3) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .form_labels {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: $font-weight;
+  }
+  input {
+    @include input_style();
+    &::placeholder {
+      color: $color-neutral-300;
+      font-weight: 400;
+    }
+    &:focus {
+      background: linear-gradient(white, white) padding-box,
+        linear-gradient(
+            to right,
+            $color-gradient-primary,
+            $color-gradient-secondary
+          )
+          border-box;
+      border: 1px solid transparent;
+    }
+  }
+}
+
+.form_control_inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @include for-phone-only() {
+    grid-template-columns: none;
+  }
+  row-gap: 0.375rem;
+  &:first-child {
+    column-gap: 0.75rem;
+  }
+  > .form_labels {
+    grid-area: 1 / span 2;
+  }
+  > input {
+    max-width: 100px;
+    &#cvc {
+      max-width: revert;
+      @include for-phone-only() {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.confirm_btn {
+  @include input_style();
+  background-color: $color-neutral-600;
+  color: $color-neutral-200;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-neutral-200;
+    color: $color-neutral-600;
+    border-color: $color-neutral-600;
+  }
+  @include for-phone-only() {
+    min-height: 60px;
+  }
+}
