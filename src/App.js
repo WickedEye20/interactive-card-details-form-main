@@ -3,7 +3,6 @@ import card_logo from "./assets/images/card-logo.svg";
 import card_back_img from "./assets/images/bg-card-back.png";
 import "./assets/css/style.css";
 import { useState } from "react";
-import { useRef } from "react";
 
 function App() {
   const [cardInfo, setcardInfo] = useState({
